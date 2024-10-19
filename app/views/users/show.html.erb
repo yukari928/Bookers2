@@ -15,5 +15,6 @@
   <p>タイトル：<%= book.title %></p>
   <p>感想：<%= book.body %></p>
   <p>ユーザーネーム：<%= book.user.name %></p>
+  <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
 </div>
 <% end %>
