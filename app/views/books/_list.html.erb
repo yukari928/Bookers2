@@ -11,3 +11,4 @@
   <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
 </div>
 <% end %>
+<%= paginate books %>
