@@ -1,8 +1,22 @@
-<% books.each do |book| %>
+<div class="card-list-container py-5">
+  <% books.each do |book| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to book_path(book.id) do %>
+      <%= image_tag book.get_image %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div>
-  <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
-  <% end %>
+
 
   <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
   <p>タイトル：<%= book.title %></p>
