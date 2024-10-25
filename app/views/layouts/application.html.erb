@@ -25,6 +25,16 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
+              <%= link_to '投稿フォーム', new_book_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Books', books_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark'%>
+            </li>
+            <% else %>
+            <li class="nav-item">
               <%= link_to 'Home', root_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
@@ -36,18 +46,10 @@
             <li class="nav-item">
               <%= link_to "Log in", new_user_session_path, class: 'nav-link text-dark' %>
             </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to '投稿フォーム', new_book_path, class: 'nav-link text-dark' %>
-            </li>
+            <% end %>
+            <% if current_user %>
             <li class="nav-item">
               <%= link_to 'Users', user_path(current_user.id) %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Books', books_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark'%>
             </li>
             <% end %>
             </ul>
