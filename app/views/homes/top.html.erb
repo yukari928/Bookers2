@@ -1,12 +1,16 @@
-<div class="container">
+<div class="d-flex justify-content-center">
   <div class="row">
-    <h1>welcome to Bookers !!</h1>
+    <div class="col">
+      <h1>welcome to
+      <i class="fa-solid fa-book"></i>
+      <strong>Bookers !!</strong></h1>
+      
+      <p>In Bookers,</br>
+         you can share and exchange your opinions , inpressions , and emotions</br>
+         about various books!</p>
 
-    <p>In Bookers,</br>
-       you can share and exchange your opinions , inpressions , and emotions</br>
-       about various books!</p>
-
-    <%= link_to "Log in", new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-info w-100" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success w-100 my-3" %>
+    </div>
   </div>
 </div>

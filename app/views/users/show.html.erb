@@ -1,9 +1,54 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+    <h2>User info</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>introduction</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @users.each do |user|%>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.introduction %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
+
+
+    <div class="col-lg-8">
+    <h2>Books</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    </div>
+  </div>
 </div>
 
-<%= render 'books/list', books: @books %>
+
