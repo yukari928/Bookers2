@@ -6,7 +6,9 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
-  validates :image, presence: true
+  validates :body, presence: true
+  validates :body, length: { maximum: 200 }
+
 
   def get_image
     unless image.attached?

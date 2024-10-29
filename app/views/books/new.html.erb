@@ -10,10 +10,7 @@
     </ul>
   <% end %>
 
-  <%= form_with model: @book do |f| %>
-    <h6>画像</h6>
-      <%= f.file_field :image, accept: "image/*" %>
-
+    <%= form_with model: @book do |f| %>
     <div class="row">
       <h6 class="col my-2">Title</h6>
     </div>
@@ -24,9 +21,9 @@
       <%= f.text_area :body %>
     <div class="row">
       <div class="col my-3">
-        <%= f.submit 'Create Book' %>
+        <%= f.submit 'Create Book', class: "col-xs-12 btn btn-success" %>
       </div>
     </div>
+    <% end %>
 
-  <% end %>
 </div>
