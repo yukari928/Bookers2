@@ -2,25 +2,47 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
+
+
+    <div>
     <h2>User info</h2>
-
+    <% @users.each do |user|%>
+      <%= image_tag user.get_profile_image(100,100) %>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>introduction</th>
-        </tr>
-      </thead>
-
-      <tbody>
-      <% @users.each do |user|%>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.introduction %></td>
-        </tr>
+        <tr><th>name</th><td><%= user.name %></td></tr>
+        <tr><th>introduction</th><td><%= user.introduction %></td></tr>
       <% end %>
-      </tbody>
     </table>
+    </div>
+
+
+    <h2>New book</h2>
+
+    <% if @book.errors.any? %>
+    <%= @book.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
+
+    <%= form_with model: @book do |f| %>
+    <div class="row">
+      <h6 class="col my-2">Title</h6>
+    </div>
+      <%= f.text_field :title %>
+    <div class="row">
+      <h6 class="col my-2">Opinion</h6>
+    </div>
+      <%= f.text_area :body %>
+    <div class="row">
+      <div class="col my-3">
+        <%= f.submit 'Create Book', class: "col-xs-12 btn btn-success" %>
+      </div>
+    </div>
+    <% end %>
     </div>
 
 
