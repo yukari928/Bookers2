@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<div class=container>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6 px-5 mx-auto">
+
+    <h1>Editing Book</h1>
+
+    <%= form_with model: @book do |f| %>
+    <div class="row">
+      <h6 class="col my-2">Title</h6>
+    </div>
+      <%= f.text_field :title %>
+    <div class="row">
+      <h6 class="col my-2">Opinion</h6>
+    </div>
+      <%= f.text_area :body %>
+    <div class="row">
+      <div class="col my-3">
+        <%= f.submit 'Update Book', class: "col-xs-12 btn btn-success" %>
+      </div>
+    </div>
+    <% end %>
+
+    <%= link_to "Show", book_path %>
+    |
+    <%= link_to "Back", books_path %>
+
+    </div>
+  </div>
+</div>

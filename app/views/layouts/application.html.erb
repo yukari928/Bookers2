@@ -80,6 +80,9 @@
       </nav>
     </header>
     <main>
+      <% flash.each do |message_type, message| %>
+        <p id="<%= message_type %>"><%= message %></p>
+      <% end %>
     <%= yield %>
     </main>
     <footer>
