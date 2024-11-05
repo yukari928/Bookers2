@@ -1,90 +1,39 @@
-    <% if @book.errors.any? %>
-    <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-    <% end %>
+<%= render 'list', users: @users, book: @book %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-8 offset-md-1">
 
-    <div>
-    <h2>User info</h2>
-    <% @users.each do |user|%>
-      <%= image_tag user.get_profile_image(100,100) %>
-    <table class="table table-striped">
-        <tr><th>name</th><td><%= user.name %></td></tr>
-        <tr><th>introduction</th><td><%= user.introduction %></td></tr>
-      <% end %>
-    </table>
-
-    <%= link_to edit_user_path(current_user) do %>
-      <button type="button" class="btn btn-outline-secondary btn-block">
-        <i class="fa-solid fa-user-gear"></i>
-      </button>
-    <% end %>
-    </div>
-
-
-    <h2>New book</h2>
-
-    <%= form_with model: @book do |f| %>
-    <div class="row">
-      <h6 class="col my-2">Title</h6>
-    </div>
-      <%= f.text_field :title %>
-    <div class="row">
-      <h6 class="col my-2">Opinion</h6>
-    </div>
-      <%= f.text_area :body %>
-    <div class="row">
-      <div class="col my-3">
-        <%= f.submit 'Create Book', class: "col-xs-12 btn btn-success" %>
-      </div>
-    </div>
-    <% end %>
-    </div>
-
-
-    <div class="col-lg-8">
-
-    <h2>Book detail</h2>
-    <table class="table table-striped">
-      <tbody>
-      <% @books.each do |book| %>
-        <tr>
-          <td>
-            <%= link_to user_path(current_user) do %>
-              <%= image_tag book.user.get_profile_image(100,100) %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to book_path(book.id) do %>
-              <%= book.title %>
-            <% end %>
-          </td>
-          <td><%= book.body %></td>
-          <td>
-            <%= link_to edit_book_path(book.id) do %>
-              <button type="button" class="btn btn-success">Edit</button>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to book_path(book.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-              <button type="button" class="btn btn-danger">Destroy</button>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+      <h2>Book detail</h2>
+      <table class="table table-striped">
+        <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= link_to user_path(current_user) do %>
+                <%= image_tag book.user.get_profile_image(100,100) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td><%= book.body %></td>
+            <td>
+              <%= link_to edit_book_path(book.id) do %>
+                <button type="button" class="btn btn-success">Edit</button>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                <button type="button" class="btn btn-danger">Destroy</button>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
     </div>
+
   </div>
 </div>
-
-
-
