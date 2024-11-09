@@ -1,4 +1,9 @@
 class BooksController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
+
+  def new
+    @book = Book.new(title: "Default Title", body: "Default Body")
+  end
 
   def create
     @book = Book.new(book_params)
@@ -22,9 +27,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @users = User.all
+    @books = Book.new
     @book = Book.find(params[:id])
+    @users = User.all
     @book_comment = BookComment.new
+    @other_user = User.find_by(id: 2)
   end
 
   def edit
@@ -47,10 +54,19 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+
   private
 
   def book_params
     params.require(:book).permit(:title, :image, :body)
   end
+
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    unless @book.user_id == current_user.id
+      redirect_to books_path
+    end
+  end
+
 
 end

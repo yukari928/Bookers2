@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @books = @user.books.page(params[:page])
     @users = User.all
     @book = Book.new
+    @other_user = User.find_by(id: 2)
   end
 
   def edit
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     @user = User.find(params[:id])
     unless @user.id == current_user.id
-      redirect_to user_pash(current_user)
+      redirect_to user_path(current_user)
     end
   end
 

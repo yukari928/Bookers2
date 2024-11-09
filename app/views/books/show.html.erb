@@ -19,15 +19,23 @@
         <tr><th>introduction</th><td><%= @book.user.introduction %></td></tr>
       </table>
 
-      <%= link_to edit_user_path(current_user) do %>
-        <button type="button" class="btn btn-outline-secondary btn-block">
-          <i class="fa-solid fa-user-gear"></i>
-        </button>
+      <% if @book.user == current_user %>
+        <%= link_to edit_user_path(@book.user) do %>
+          <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fa-solid fa-user-gear"></i>
+          </button>
+        <% end %>
+      <% else %>
+        <%= link_to edit_user_path(@other_user) do %>
+          <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fa-solid fa-user-gear"></i>
+          </button>
+        <% end %>
       <% end %>
 
 
       <h2>New book</h2>
-        <%= form_with model: @book do |f| %>
+        <%= form_with model: @books do |f| %>
       <div class="row">
         <h6 class="col my-2">Title</h6>
       </div>

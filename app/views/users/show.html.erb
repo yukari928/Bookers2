@@ -19,10 +19,18 @@
         <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
       </table>
 
-      <%= link_to edit_user_path(current_user) do %>
-        <button type="button" class="btn btn-outline-secondary btn-block">
-          <i class="fa-solid fa-user-gear"></i>
-        </button>
+      <% if @user == current_user %>
+        <%= link_to edit_user_path(@user) do %>
+          <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fa-solid fa-user-gear"></i>
+          </button>
+        <% end %>
+      <% else %>
+        <%= link_to edit_user_path(@other_user) do %>
+          <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fa-solid fa-user-gear"></i>
+          </button>
+        <% end %>
       <% end %>
 
 
@@ -46,7 +54,6 @@
     </div>
 
 
-
     <div class="col-md-8 offset-md-1">
 
       <h2>Books</h2>
@@ -60,10 +67,10 @@
         </thead>
 
         <tbody>
-        <% @books.each do |book| %>
+          <% @books.each do |book| %>
           <tr>
             <td>
-              <%= link_to user_path(current_user) do %>
+              <%= link_to user_path(book.user.id) do %>
                 <%= image_tag book.user.get_profile_image(100,100) %>
               <% end %>
             </td>
@@ -74,7 +81,7 @@
             </td>
             <td><%= book.body %></td>
           </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
 
@@ -82,5 +89,8 @@
 
   </div>
 </div>
+
+
+
 
 
